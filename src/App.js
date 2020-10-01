@@ -6,6 +6,9 @@ import IndexToDoForm from "./components/ToDoForm/IndexToDoForm";
 import IndexToDoList from "./components/ToDoList/IndexToDoList";
 import IndexPagination from "./Pagination/IndexPagination";
 import queryString from "query-string";
+import IndexSearch from "./components/Search/IndexSearch";
+import Clock from "./components/Clock/Clock";
+import IndexMagicBox from "./components/MagicBox/IndexMagicBox";
 
 function App() {
   const [toDoList, setToDoList] = useState([
@@ -70,17 +73,34 @@ function App() {
       _page: newPage,
     });
   }
+  /// Search
+  function handleSearchForm(newSearch) {
+    console.log("newSearch", newSearch);
+    setFilters({
+      ...filters,
+      _page: 1,
+      title_like: newSearch.searchTerm,
+    });
+  }
+  const [showClock, setShowClock] = useState(true);
   return (
     <div className="app">
       <h1>Well come to reactHook</h1>
       {/* <IndexColorBox /> (1) */}
       {/* <IndexToDoForm onSubmit={onSubmit} />
       <IndexToDoList toDos={toDoList} onToDoClick={handleClick} /> */}
-      <IndexPostList posts={postList} />
+      {/* <IndexPostList posts={postList} />
       <IndexPagination
         pagination={pagination}
         onPageChange={handlePageChange}
       />
+      <IndexSearch onSubmit={handleSearchForm} /> */}
+
+      {/* {showClock && <Clock />}
+      <button type="button" onClick={() => setShowClock(false)}>
+        Hide Clock
+      </button> */}
+      <IndexMagicBox />
     </div>
   );
 }
